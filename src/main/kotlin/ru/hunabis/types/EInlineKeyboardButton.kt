@@ -1,0 +1,9 @@
+enum class EInlineKeyboardButton {
+	INVITE,
+	SELECT_LANGUAGE,
+	NEWS,
+	HELP,
+	LANGUAGE,
+	GAME,
+	SHARE_WHATSAPP;
+}

@@ -1,0 +1,7 @@
+enum class EEditMessageText {
+	SELECT_LANGUAGE,
+	UPDATE_LANGUAGE,
+	GAME_JOIN,
+	STOP,
+	REG_STOP;
+}

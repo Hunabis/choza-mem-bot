@@ -1,0 +1,52 @@
+
+start=*Hi there!*%nI'm a host-bot for *Wata mem?*
+start.invite=Add the game to your chat
+start.select_language=Language
+start.select_language.text=Choose your language
+start.select_language.back=Back
+start.news=News
+start.help=Help
+start.description.group=Finish registration and start the game
+
+command=Command
+command.not_found=not found
+
+init=*Hi there!*%nI'm a host-bot for *Wata mem?*%n%nTo start the game give me the following administrator rights:%n☑️ delete messages%n☑️ block users%n☑️ pin messages
+
+game=Join
+game.end=*The game is over!*%nWinners:{}%n%nOther players:{}
+game.join=Registered:
+game.memes=Your memes:
+game.memes.select=*Select meme*
+game.count={} players registered so far.
+game.vote=*Pick a round winner:*
+game.text=*Registration is open*
+game.round=*This round was won by:*%n{}
+game.invalid=*Administrator rights have not been granted*%n%nTo start the game give me the following administrator rights:%n☑️ delete messages%n☑️ block users%n☑️ pin messages
+game.description.group=Start a new game (register)
+game.addition=If you do not have time to enter the game - you can create your own chat, invite friends, add a bot there and play for free! =)
+
+stop.text=Registration canceled...
+stop.description.group=Cancel registration
+
+reg.time={} left until registration ends
+reg.stop.valid_count=*The game starts!*
+reg.stop.invalid_count=Not enough players to start the game...
+
+extend=Added +{} seconds to the duration of registration%nTime left till the game begins: {}
+extend.description.group=Extend registration
+
+help.description.group=Help
+
+share=&Hello! We play Wata mem? in Telegram, come to us:%n{}
+share.text=Invite friends from other instant messengers and social networks to this chat:
+share.description.group=Invite friends
+
+time.hour=hr.
+time.minute=min.
+time.second=sec.
+
+
+
+
+

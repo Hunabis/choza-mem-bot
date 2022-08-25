@@ -1,0 +1,49 @@
+
+start=*아녕하세요!*%n저는 봇 호스트입니다. *이 밈은 무엇입니까?*
+start.invite=그룹에 게임 추가
+start.select_language=언어
+start.select_language.text=언어 선택
+start.select_language.back=뒤
+start.news=뉴스
+start.help=도움말
+start.description.group=등록을 마치고 게임을 시잔하십시오
+
+command=명령어를
+command.not_found=존재하지 얺는다
+
+init=*안녕!*%n저는 봇 호스트입니다. *이 밈은 무엇입니까?*%n%n게임을 시작하려면 다음 관리자 권한을 부여하십시오.%n☑️ 메시지 삭제%n☑️ 사용자 차단%n☑️ 고정 메시지
+
+game=잠가
+game.join=등록 인원:
+game.memes=당신의 밈:
+game.memes.select=*밈 선택*
+game.count=종 인원 {} 명.
+game.text=모집 진행중
+game.vote=*라운드 승자 선택:*
+game.round=*이번 라운드의 승자:*%n{}
+game.invalid=*봇에게 관리자 권한이 부여되지 않았습니다*%n%n게임을 시작하려면 다음 관리자 권한을 부여하십시오.%n☑️ 메시지 삭제%n☑️ 사용자 차단%n☑️ 고정 메시지
+game.description.group=새 게임 시잔 (등록)
+game.addition=게임에 들어갈 시간이 없다면 자신만의 채팅을 만들고, 친구를 초대하고, 거기에 봇을 추가하고 무료로 플레이할 수 있습니다! ^^
+
+stop.text=등록 취소됨...
+stop.description.group=등록 취소
+
+reg.time=등록 종료까지 {} 남음
+reg.stop.valid_count=*게임이 시작됩니다!*
+reg.stop.invalid_count=게임을 시작할 수 있는 플레이어가 충분하지 않습니다...
+
+extend=+{} 초, 등록 시간%n등록 종료까지 {} 남았습니다
+extend.description.group=등록 연장
+
+help.description.group=도움밀
+
+share=&안녕하세요! 우리는 "이 밈은 무엇입니까?"를 재생합니다. 텔레그램 에서:%n{}
+share.text=다른 메신저 및 소셜 네트워크의 친구를 이 채팅에 초대하십시오:
+share.description.group=친구를 초대
+
+time.hour=시간.
+time.minute=분.
+time.second=초.
+
+
+
