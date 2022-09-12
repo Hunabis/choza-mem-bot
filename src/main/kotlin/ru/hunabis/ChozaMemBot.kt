@@ -376,8 +376,7 @@ class ChozaMemBot: TelegramLongPollingCommandBot(){
 									for(chatId in winners.keys){
 										val player = game.getPlayer(chatId.toLong());
 										if(player != null){
-											val userId = DatabaseManager.getUserFromChat(player.chatId);
-											if(userId != null) str += "\n[${player.firstName}]({})".replaceFirst("{}", fixMarkdown("tg://user?id=$userId"));
+											str += "\n[${player.firstName}]({})".replaceFirst("{}", fixMarkdown("tg://user?id=${player.chatId}"));
 										}
 									}
 
@@ -400,8 +399,7 @@ class ChozaMemBot: TelegramLongPollingCommandBot(){
 									var str = ""; 
 									var i = 0;
 									for(player in sorted){
-										val userId = DatabaseManager.getUserFromChat(player.chatId);
-										if(userId != null) str += "\n\t[${player.firstName}]({})".replaceFirst("{}", fixMarkdown("tg://user?id=$userId")) + "  —  ${player.getScore()}" + if(i == 2) ":" else "";
+										str += "\n\t[${player.firstName}]({})".replaceFirst("{}", fixMarkdown("tg://user?id=${player.chatId}")) + "  —  ${player.getScore()}" + if(i == 2) ":" else "";
 										execute(SendMessages.get(ESendMessage.GAME_END, voteMessage, arrayOf(str)));
 										player.deleteMemes(this);
 										player.deleteYourMemesMessage(this);

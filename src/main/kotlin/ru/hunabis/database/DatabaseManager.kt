@@ -193,44 +193,6 @@ object DatabaseManager {
 		return false;
 	}
 
-	fun getChatFromUser(userId: Long): Long? {
-		var result: Long? = null;
-		try {
-			val preparedStatement = connection.getPreparedStatement("SELECT chatId FROM Chats WHERE userId = ?");
-			preparedStatement.setLong(1, userId);
-			val res = preparedStatement.executeQuery();
-
-			if(res.next()) result = res.getLong("chatId");
-
-			res.close();
-	  	} catch(e: SQLException){
-			e.printStackTrace();
-	  	}
-
-		return result;
-	}
-
-	fun getChatFromUser(user: User): Long? = getChatFromUser(user.id);
-
-	fun getUserFromChat(chatId: Long): Long? {
-		var result: Long? = null;
-		try {
-			val preparedStatement = connection.getPreparedStatement("SELECT userId FROM Chats WHERE chatId = ?");
-			preparedStatement.setLong(1, chatId);
-			val res = preparedStatement.executeQuery();
-
-			if(res.next()) result = res.getLong("userId");
-
-			res.close();
-	  	} catch(e: SQLException){
-			e.printStackTrace();
-	  	}
-
-		return result;
-	}
-
-	fun getUserFromChat(chat: Chat): Long? = getChatFromUser(chat.id);
-
     fun setLanguageCode(chat: Chat, languageCode: String = "en"): Boolean {
 		var updatedRows = 0;
         try {
