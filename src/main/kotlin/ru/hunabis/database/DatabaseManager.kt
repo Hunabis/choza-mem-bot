@@ -23,18 +23,16 @@ object DatabaseManager {
 	}
 
 	fun createChatsTable(){
-		connection.executeQuery("CREATE TABLE IF NOT EXISTS Chats (chatId BIGINT PRIMARY KEY, languageCode VARCHAR(11) NOT NULL, isGroup BOOLEAN NOT NULL, isAdmin BOOLEAN DEFAULT false, oldChatId BIGINT, registrationMessage INTEGER, registeredUsers BIGINT[] DEFAULT '{}', userId BIGINT);");
+		connection.executeQuery("CREATE TABLE IF NOT EXISTS Chats (chatId BIGINT PRIMARY KEY, languageCode VARCHAR(11) NOT NULL, isGroup BOOLEAN NOT NULL, isAdmin BOOLEAN DEFAULT false, oldChatId BIGINT, registrationMessage INTEGER, registeredUsers BIGINT[] DEFAULT '{}');");
     }
 
     fun initChat(chat: Chat, languageCode: String = "en", user: User?): Boolean {
 		var updatedRows = 0;
 		try {
-			val preparedStatement: PreparedStatement = connection.getPreparedStatement("INSERT INTO Chats (chatId, languageCode, isGroup, userId) VALUES (?, ?, ?, ?) ON CONFLICT (chatId) DO UPDATE SET languageCode = excluded.languageCode, isGroup = excluded.isGroup, userId = excluded.userId;");
+			val preparedStatement: PreparedStatement = connection.getPreparedStatement("INSERT INTO Chats (chatId, languageCode, isGroup, userId) VALUES (?, ?, ?, ?) ON CONFLICT (chatId) DO UPDATE SET languageCode = excluded.languageCode, isGroup = excluded.isGroup;");
 			preparedStatement.setLong(1, chat.id);
 			preparedStatement.setString(2, languageCode);
 			preparedStatement.setBoolean(3, user == null);
-			if(user == null) preparedStatement.setNull(4, Types.BIGINT);
-			else preparedStatement.setLong(4, user.id);
 
 			updatedRows = preparedStatement.executeUpdate();
 		} catch (e: SQLException) {
@@ -68,6 +66,20 @@ object DatabaseManager {
 		}
 
 		return false;
+	}
+
+	fun getGroupsCount(): Int {
+		var result = 0;
+		try {
+			val preparedStatement: PreparedStatement = connection.getPreparedStatement("SELECT * FROM Chats");
+			updatedRows = preparedStatement.executeUpdate();
+
+			result = preparedStatement.getFetchSize();
+        } catch (e: SQLException) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	fun registerUser(chat: Chat, user: User): Boolean {
