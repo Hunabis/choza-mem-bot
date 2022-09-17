@@ -100,7 +100,7 @@ object SendMessages {
 					.parseMode("MarkdownV2")
 					.text(TranslationHelper.translate(chatData.languageCode, "game.memes.select"))
 					.replyMarkup(InlineKeyboardMarkups.get(EInlineKeyboardMarkup.GAME_MEMES, chatData.languageCode, arguments))
-					.replyToMessageId(message.chat.id)
+					.replyToMessageId(message.messageId)
 				.build();
 			}
 			ESendMessage.GAME_VOTE -> {
