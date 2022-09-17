@@ -67,7 +67,6 @@ class GameCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 								}, 5000);
 								TimerTasker.setTimeout({
 									DatabaseManager.getRegisteredUsers(mes.chat).forEach {
-										val chatId = DatabaseManager.getChatFromUser(it);
 										val firstName = absSender.execute(GetChatMember.builder()
 											.chatId(message.chat.id)
 											.userId(it)
@@ -123,7 +122,7 @@ class GameCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 					}
 				}
 			}
-		} catch(e: TelegramApiException){
+		} catch (e: TelegramApiException){
 			e.printStackTrace();
 		}
 	}
