@@ -89,7 +89,7 @@ class GameCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 											player?.setYourMemesMessage(yourMemesMessage.messageId);
 											TimerTasker.setTimeout({
 												println(1);
-												absSender.execute(SendMessages.get(ESendMessage.GAME_MEMES, yourMemesMessage, arrayOf(mes.chat.id.toString())));
+												try{absSender.execute(SendMessages.get(ESendMessage.GAME_MEMES, yourMemesMessage, arrayOf(mes.chat.id.toString())));catch(e: Exception) { e.printStackTrace()};
 												println(2);
 											}, 6000);
 										}
