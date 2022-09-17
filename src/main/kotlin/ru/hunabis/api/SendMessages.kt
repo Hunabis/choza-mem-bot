@@ -96,11 +96,11 @@ object SendMessages {
 			}
 			ESendMessage.GAME_MEMES -> {
 				return SendMessage.builder()
-					.chatId(arguments.get(0).toLong())
+					.chatId(message.chat.id)
 					.parseMode("MarkdownV2")
 					.text(TranslationHelper.translate(chatData.languageCode, "game.memes.select"))
 					.replyMarkup(InlineKeyboardMarkups.get(EInlineKeyboardMarkup.GAME_MEMES, chatData.languageCode, arguments))
-					.replyToMessageId(arguments.get(1).toInt())
+					.replyToMessageId(message.chat.id)
 				.build();
 			}
 			ESendMessage.GAME_VOTE -> {

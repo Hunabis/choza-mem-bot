@@ -73,7 +73,7 @@ object InlineKeyboardMarkups {
 			EInlineKeyboardMarkup.GAME_MEMES -> {
 				val buttons = mutableListOf<List<InlineKeyboardButton>>();
 				for(i in 1..6) buttons.add(listOf(InlineKeyboardButton("$i").apply {
-					callbackData = "game.memes.select.$i:${arguments.get(2)}";
+					callbackData = "game.memes.select.$i:${arguments.get(0)}";
 				}));
 
 				return InlineKeyboardMarkup().apply {
