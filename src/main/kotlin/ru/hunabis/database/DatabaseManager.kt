@@ -72,7 +72,6 @@ object DatabaseManager {
 		var result = 0;
 		try {
 			val preparedStatement: PreparedStatement = connection.getPreparedStatement("SELECT * FROM Chats");
-			updatedRows = preparedStatement.executeUpdate();
 
 			result = preparedStatement.getFetchSize();
         } catch (e: SQLException) {
