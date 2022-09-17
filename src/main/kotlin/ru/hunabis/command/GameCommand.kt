@@ -93,7 +93,6 @@ class GameCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 										}
 										for(i in 1..6){
 											val url = randomPicture();
-											println(url);
 											try {
 												val meme = absSender.execute(SendPhoto.builder()
 													.chatId(it)
