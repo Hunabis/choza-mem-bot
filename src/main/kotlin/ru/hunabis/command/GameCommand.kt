@@ -71,41 +71,39 @@ class GameCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 											.chatId(message.chat.id)
 											.userId(it)
 										.build()).getUser().firstName;
-										if(chatId != null){
-											game?.addPlayer(Player(chatId, firstName));
-											val questionMessage = absSender.execute(SendMessages.get(ESendMessage.GAME_QUESTION, mes));
-											if(questionMessage != null){
-												game?.setQuestion(questionMessage.messageId);
-												game?.cacheMessage(questionMessage.messageId);
-											}
+										game?.addPlayer(Player(it, firstName));
+										val questionMessage = absSender.execute(SendMessages.get(ESendMessage.GAME_QUESTION, mes));
+										if(questionMessage != null){
+											game?.setQuestion(questionMessage.messageId);
+											game?.cacheMessage(questionMessage.messageId);
+										}
 
-											val yourMemesMessage = absSender.execute(SendMessage.builder()
-												.chatId(chatId)
-												.parseMode("MarkdownV2")
-												.text(TranslationHelper.translate(chatData.languageCode, "game.memes"))
-											.build());
+										val yourMemesMessage = absSender.execute(SendMessage.builder()
+											.chatId(it)
+											.parseMode("MarkdownV2")
+											.text(TranslationHelper.translate(chatData.languageCode, "game.memes"))
+										.build());
 
-											val player = game?.getPlayer(chatId);
-											if(yourMemesMessage != null){
-												player?.setYourMemesMessage(yourMemesMessage.messageId);
-												TimerTasker.setTimeout({
-													absSender.execute(SendMessages.get(ESendMessage.GAME_MEMES, yourMemesMessage, arrayOf(chatId.toString(), yourMemesMessage.messageId.toString(), mes.chat.id.toString())));
-												}, 6000);
-											}
-											for(i in 1..6){
-												val url = randomPicture();
-												println(url);
-												try {
-													val meme = absSender.execute(SendPhoto.builder()
-														.chatId(chatId)
-														.caption("$i.")
-														.photo(InputFile(url))
-													.build());
+										val player = game?.getPlayer(it);
+										if(yourMemesMessage != null){
+											player?.setYourMemesMessage(yourMemesMessage.messageId);
+											TimerTasker.setTimeout({
+												absSender.execute(SendMessages.get(ESendMessage.GAME_MEMES, yourMemesMessage, arrayOf(it.toString(), yourMemesMessage.messageId.toString(), mes.chat.id.toString())));
+											}, 6000);
+										}
+										for(i in 1..6){
+											val url = randomPicture();
+											println(url);
+											try {
+												val meme = absSender.execute(SendPhoto.builder()
+													.chatId(it)
+													.caption("$i.")
+													.photo(InputFile(url))
+												.build());
 
-													if(meme != null) player?.setMeme(meme.messageId, url);
-												} catch(e: Exception){
-													e.printStackTrace();
-												}
+												if(meme != null) player?.setMeme(meme.messageId, url);
+											} catch(e: Exception){
+												e.printStackTrace();
 											}
 										}
 
