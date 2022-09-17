@@ -15,16 +15,14 @@ class HelpCommand: CustomCommand(COMMAND_IDENTIFIER, COMMAND_DESCRIPTION){
 		try {
 			var chatData = DatabaseManager.getChatData(message.chat);
 			if(chatData.isGroup){
-				val chatId: Long? = DatabaseManager.getChatFromUser(message.from);
-				if(chatId != null){
-					chatData = DatabaseManager.getChatData(absSender.execute(GetChat(chatId.toString())));
-					absSender.execute(SendMessage.builder()
-						.chatId(chatId)
-						.text(TranslationHelper.translate(chatData.languageCode, "start"))
-						.parseMode("MarkdownV2")
-						.replyMarkup(InlineKeyboardMarkups.get(EInlineKeyboardMarkup.START, chatData.languageCode))
-					.build());
-				}
+				var chatId = message.from.id;
+				chatData = DatabaseManager.getChatData(absSender.execute(GetChat(chatId.toString())));
+				absSender.execute(SendMessage.builder()
+					.chatId(chatId)
+					.text(TranslationHelper.translate(chatData.languageCode, "start"))
+					.parseMode("MarkdownV2")
+					.replyMarkup(InlineKeyboardMarkups.get(EInlineKeyboardMarkup.START, chatData.languageCode))
+				.build());
 			}
 		} catch(e: Exception){
 			e.printStackTrace();
