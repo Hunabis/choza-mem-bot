@@ -29,7 +29,7 @@ object DatabaseManager {
     fun initChat(chat: Chat, languageCode: String = "en", user: User?): Boolean {
 		var updatedRows = 0;
 		try {
-			val preparedStatement: PreparedStatement = connection.getPreparedStatement("INSERT INTO Chats (chatId, languageCode, isGroup, userId) VALUES (?, ?, ?, ?) ON CONFLICT (chatId) DO UPDATE SET languageCode = excluded.languageCode, isGroup = excluded.isGroup;");
+			val preparedStatement: PreparedStatement = connection.getPreparedStatement("INSERT INTO Chats (chatId, languageCode, isGroup) VALUES (?, ?, ?) ON CONFLICT (chatId) DO UPDATE SET languageCode = excluded.languageCode, isGroup = excluded.isGroup;");
 			preparedStatement.setLong(1, chat.id);
 			preparedStatement.setString(2, languageCode);
 			preparedStatement.setBoolean(3, user == null);
@@ -72,8 +72,8 @@ object DatabaseManager {
 		var result = 0;
 		try {
 			val preparedStatement: PreparedStatement = connection.getPreparedStatement("SELECT * FROM Chats");
-
-			result = preparedStatement.getFetchSize();
+			val res = preparedStatement.executeQuery();
+			while(res.next()) if(res.getBoolean("isGroup")) result++;
         } catch (e: SQLException) {
 			e.printStackTrace();
 		}
